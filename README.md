@@ -2,7 +2,7 @@
 
 Wil je meer uit Maven halen dan alleen` mvn clean install ` uitvoeren? 
 Altijd al iets meer over de interne werking van Maven willen weten, of een Maven build net wat anders te laten doen? 
-Dan is deze Meetup voor jou!
+Dan is deze workshop voor jou!
  
 We gebruiken bijna allemaal Maven in onze dagelijkse praktijk om standaard Java projecten mee te bouwen. 
 Maar echt creatief omgaan met Maven zie ik om mij heen toch niet zo vaak gebeuren. 
@@ -16,11 +16,10 @@ Hiervoor gaan we de folder structuur van een Maven project bekijken, aan de slag
 
 Een computer (Mac, Windows of Linux) met daarop geinstalleerd:
 
-   * een Git client
-   * een internet browser
-   * en natuurlijk ook [Maven](https://maven.apache.org/download.cgi)
-   * en een redelijke text/xml editor of IDE geïnstalleerd.
+   * een Git client om deze repository te clonen
+   * een IDE of goede text/xml editor
+   * en natuurlijk ook [Maven](https://maven.apache.org/download.cgi) zelf
 
-### Todo:
+### Aan de slag
 
-  * verwijzen naar de gh-pages url
+Volg de instructies op [deze pagina](https://ordina-jtech.github.io/MetMavenKunJeAllesBouwen/#/).
