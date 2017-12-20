@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <!-- This is the Maven Model version which MUST be 4.0.0 !!! -->
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <!-- Identification of the Artifact -->
+    <groupId>nl.bertkoor</groupId>
+    <artifactId>MavenDemo</artifactId>
+    <version>0.${revision}</version>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <revision>0</revision>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <build>
+        <!-- directory>${project.basedir}/target${revision}</directory -->    <!-- Don't try this at home, bad practice! Overridden for demo purposes. -->
+        <plugins>      <!-- with AntRun you can do many elementary tasks -->
+            <plugin>   <!-- see https://maven.apache.org/plugins/maven-antrun-plugin/index.html and https://ant.apache.org/manual/ -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase></phase>
+                        <goals> 
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="ant-step01">
+                            <!--
+                                <echo>project.basedir =               ${project.basedir}</echo>
+                                <echo>project.build.sourceDirectory = ${project.build.sourceDirectory}</echo>
+                                <echo>project.build.directory =       ${project.build.directory}</echo>
+                                <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
+                             -->
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
