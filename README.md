@@ -1,6 +1,6 @@
 # Met Maven kun je alles bouwen
 
-Wil je meer uit Maven halen dan alleen mvn clean install uitvoeren? 
+Wil je meer uit Maven halen dan alleen` mvn clean install ` uitvoeren? 
 Altijd al iets meer over de interne werking van Maven willen weten, of een Maven build net wat anders te laten doen? 
 Dan is deze Meetup voor jou!
  
