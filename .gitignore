@@ -42,6 +42,7 @@ local.properties
 
 # User-specific stuff:
 .idea/
+*.iml
 
 cmake-build-debug/
 
