@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
  
     <!-- Identification of the Artifact -->
-    <groupId>nl.bertkoor</groupId>
+    <groupId>nl.ordina.jtech</groupId>
     <artifactId>MavenDemo</artifactId>
     <version>0.${revision}</version>
     <packaging>jar</packaging>
@@ -13,7 +13,7 @@
         <revision>0</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <build>
         <!-- directory>${project.basedir}/target${revision}</directory -->    <!-- Don't try this at home, bad practice! Overridden for demo purposes. -->
         <plugins>      <!-- with AntRun you can do many elementary tasks -->
