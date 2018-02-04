@@ -75,7 +75,7 @@ fabric.properties
 # *.ipr
 
 ### Maven ###
-target/
+target*/
 
 ### NetBeans ###
 nbproject/private/
