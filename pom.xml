@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
     
     <properties>
-        <revision>1</revision>
+        <revision>2</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -23,16 +23,31 @@
                 <version>1.6</version>
                 <executions>
                     <execution>
+                        <id>step00</id>
                         <phase>validate</phase>
                         <goals> 
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="ant-step01">
+                            <target name="ant-step00">
                                 <echo>project.basedir =               ${project.basedir}</echo>
                                 <echo>project.build.sourceDirectory = ${project.build.sourceDirectory}</echo>
                                 <echo>project.build.directory =       ${project.build.directory}</echo>
                                 <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>step01</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="ant-step01">
+                                <copy todir="${project.build.outputDirectory}">
+                                    <fileset dir="${project.build.sourceDirectory}" />
+                                </copy>
                             </target>
                         </configuration>
                     </execution>
