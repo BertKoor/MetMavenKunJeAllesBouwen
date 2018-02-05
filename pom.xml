@@ -45,7 +45,7 @@
                         </goals>
                         <configuration>
                             <target name="ant-step01">
-                                <copy todir="${project.build.outputDirectory}">
+                                <copy todir="${project.build.outputDirectory}" verbose="true">
                                     <fileset dir="${project.build.sourceDirectory}" />
                                 </copy>
                             </target>
