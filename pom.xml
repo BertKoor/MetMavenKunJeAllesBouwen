@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <revision>3</revision>
+        <revision>4</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -48,6 +48,19 @@
                                 <copy todir="${project.build.outputDirectory}" verbose="true">
                                     <fileset dir="${project.build.sourceDirectory}" />
                                 </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>step02</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="ant-step02">
+                                <zip basedir="${project.build.outputDirectory}"
+                                     destfile="${project.build.directory}/${project.artifactId}.zip" />
                             </target>
                         </configuration>
                     </execution>
