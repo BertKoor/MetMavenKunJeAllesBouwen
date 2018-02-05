@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <revision>4</revision>
+        <revision>5</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -61,6 +61,7 @@
                             <target name="ant-step02">
                                 <zip basedir="${project.build.outputDirectory}"
                                      destfile="${project.build.directory}/${project.artifactId}.zip" />
+                                <attachartifact file="${project.build.directory}/${project.artifactId}.zip" />
                             </target>
                         </configuration>
                     </execution>
