@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <!-- This is the Maven Model version which MUST be 4.0.0 !!! -->
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <!-- Identification of the Artifact -->
+    <groupId>nl.ordina.jtech</groupId>
+    <artifactId>ZipParent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    
+    <properties>
+        <resourceDirectory>${project.basedir}</resourceDirectory>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <outputDirectory>${project.build.directory}/bin</outputDirectory>
+        <plugins>      <!-- with AntRun you can do many elementary tasks -->
+            <plugin>   <!-- see https://maven.apache.org/plugins/maven-antrun-plugin/index.html and https://ant.apache.org/manual/ -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>step01</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="ant-step01">
+                                <copy todir="${project.build.outputDirectory}" verbose="true">
+                                    <fileset dir="${resourceDirectory}" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>step02</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="ant-step02">
+                                <zip basedir="${project.build.outputDirectory}"
+                                     destfile="${project.build.directory}/${project.artifactId}.zip" />
+                                <attachartifact file="${project.build.directory}/${project.artifactId}.zip" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

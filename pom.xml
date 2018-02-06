@@ -10,67 +10,14 @@
     <packaging>pom</packaging>
     
     <properties>
-        <revision>6</revision>
+        <revision>7</revision>
         <resourceDirectory>${project.basedir}/Main/Resources</resourceDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <build>
-        <directory>${project.basedir}/target${revision}</directory>    <!-- Don't try this at home, bad practice! Overridden for demo purposes. -->
-        <outputDirectory>${project.build.directory}/bin</outputDirectory>
-        <plugins>      <!-- with AntRun you can do many elementary tasks -->
-            <plugin>   <!-- see https://maven.apache.org/plugins/maven-antrun-plugin/index.html and https://ant.apache.org/manual/ -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>step00</id>
-                        <phase>validate</phase>
-                        <goals> 
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="ant-step00">
-                                <echo>project.basedir =               ${project.basedir}</echo>
-                                <echo>project.build.sourceDirectory = ${project.build.sourceDirectory}</echo>
-                                <echo>project.build.directory =       ${project.build.directory}</echo>
-                                <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
-                                <echo>resourceDirectory =             ${resourceDirectory}</echo>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>step01</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="ant-step01">
-                                <copy todir="${project.build.outputDirectory}" verbose="true">
-                                    <fileset dir="${resourceDirectory}" />
-                                </copy>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>step02</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="ant-step02">
-                                <zip basedir="${project.build.outputDirectory}"
-                                     destfile="${project.build.directory}/${project.artifactId}.zip" />
-                                <attachartifact file="${project.build.directory}/${project.artifactId}.zip" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    
+    <parent>
+        <groupId>nl.ordina.jtech</groupId>
+        <artifactId>ZipParent</artifactId>
+        <version>1.0</version>
+    </parent>
 </project>
