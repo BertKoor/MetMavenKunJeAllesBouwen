@@ -10,12 +10,14 @@
     <packaging>pom</packaging>
     
     <properties>
-        <revision>5</revision>
+        <revision>6</revision>
+        <resourceDirectory>${project.basedir}/Main/Resources</resourceDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
         <directory>${project.basedir}/target${revision}</directory>    <!-- Don't try this at home, bad practice! Overridden for demo purposes. -->
+        <outputDirectory>${project.build.directory}/bin</outputDirectory>
         <plugins>      <!-- with AntRun you can do many elementary tasks -->
             <plugin>   <!-- see https://maven.apache.org/plugins/maven-antrun-plugin/index.html and https://ant.apache.org/manual/ -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -34,6 +36,7 @@
                                 <echo>project.build.sourceDirectory = ${project.build.sourceDirectory}</echo>
                                 <echo>project.build.directory =       ${project.build.directory}</echo>
                                 <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
+                                <echo>resourceDirectory =             ${resourceDirectory}</echo>
                             </target>
                         </configuration>
                     </execution>
@@ -46,7 +49,7 @@
                         <configuration>
                             <target name="ant-step01">
                                 <copy todir="${project.build.outputDirectory}" verbose="true">
-                                    <fileset dir="${project.build.sourceDirectory}" />
+                                    <fileset dir="${resourceDirectory}" />
                                 </copy>
                             </target>
                         </configuration>
