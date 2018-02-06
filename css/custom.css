@@ -8,8 +8,10 @@
   text-align-last: center; */
 }
 
+.reveal p > code {
+  color: #162955;
+}
 .reveal li > code {
-  font-size: 25px;
   color: #162955;
 }
 
@@ -27,19 +29,6 @@
   max-height: 85%;
   max-width: 85%;
 }
-.reveal  img[alt~="logo"] {
-}
-
-.reveal  img[alt~="pipeline"] {
-   width: 700px;
-}
-
-.reveal  img[alt~="headshot"] {
-   margin: 0;
-   margin-top: 5px;
-   width: 75px;
-   height: 75px;
-}
 
 .reveal h1,
 .reveal h2,
@@ -48,6 +37,13 @@
 .reveal h5,
 .reveal h6 {
   color: #E39400;
+  text-transform: none;
+
+}
+
+.reveal small {
+  font-size: 0.75em;
+  vertical-align: middle;
 }
 
 .reveal table td {
