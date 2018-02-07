@@ -1,4 +1,4 @@
-This is the payload folder. 
+This is the payload folder, version ${project.version}.
 It contains my shopping lists.
 
 The purpose of this workshop is to make a Maven artifact,

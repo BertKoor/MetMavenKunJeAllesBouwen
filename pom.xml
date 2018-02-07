@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <revision>6</revision>
+        <revision>6b</revision>
         <payloadDirectory>${project.basedir}/src/payload</payloadDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -19,6 +19,29 @@
         <directory>${project.basedir}/target${revision}</directory>    <!-- Don't try this at home, bad practice! Overridden for demo purposes. -->
         <outputDirectory>${project.build.directory}/bin</outputDirectory>
         <plugins>      <!-- with AntRun you can do many elementary tasks -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-payload</id>
+                        <!-- here the phase you need -->
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${payloadDirectory}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+
+            </plugin>
             <plugin>   <!-- see https://maven.apache.org/plugins/maven-antrun-plugin/index.html and https://ant.apache.org/manual/ -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -37,20 +60,6 @@
                                 <echo>project.build.directory =       ${project.build.directory}</echo>
                                 <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
                                 <echo>resourceDirectory =             ${payloadDirectory}</echo>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>step01</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="ant-step01">
-                                <copy todir="${project.build.outputDirectory}" verbose="true">
-                                    <fileset dir="${payloadDirectory}" />
-                                </copy>
                             </target>
                         </configuration>
                     </execution>
