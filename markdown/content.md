@@ -267,6 +267,7 @@ ant-step01:
 [INFO] Final Memory: 9M/245M
 [INFO] ------------------------------------------------------------------------
 ````
+<small>I always forget which is the `/target` or the `/target/classes` &nbsp; folder, so it's good to have a reference.</small>
 
 
 ## Step 1: Output of the maven-antrun-plugin
@@ -363,11 +364,11 @@ ant-step01:
 
 <small>If this completely fails (even after asking for help)
 you can fetch a working solution from the `solution` branch.
-There are [solution branches](https://github.com/Ordina-JTech/MetMavenKunJeAllesBouwen/branches)
+There are [solution branches](https://github.com/Ordina-JTech/MetMavenKunJeAllesBouwen/branches/all)
 provided for each step.<br/>
 Just run the command:&nbsp; `git checkout solution/2 --force`</small>
 
-* Explore the **workspace** folder `target2\classes`.
+* Explore the **workspace** folder `target2/classes`.
 * Verify that the file `HelloMaven.java` has been copied there.
 * Rename the file `target2/MavenDemo-0.2.jar` to `.zip` (yes, you can!)
   so you can see the file `HelloMaven.java` is actually in there as well.
@@ -481,10 +482,10 @@ and we'll implement an extra execution step that will create a zip file.</small>
 
 ## Step 4: Creating a .zip file with ANT
 * Increase the `<revision>` on line 13.
-* Duplicate the second execution
-* Set the **id** of the new execution to `step02`
-* Change the name of the **target** likewise
-* Set the **phase** to `package`
+* Duplicate the second `<execution>`
+* Set the `<id>` of the new execution to `step02`
+* Change the name of the `<target>` likewise
+* Set the `<phase>` to `package`
 * Replace the whole `<copy>` block with:
 
 ````xml
@@ -618,9 +619,10 @@ but for this project I have on purpose chosen not to.
 A very good reason to _do_ use the `maven-resources-plugin`
 is when the resources need _filtering_.
 Maven has a different definition of what you'd intuitively expect of a filter.
-It is not including or excluding certain files
+
+Resource filtering does not deal with including or excluding certain files
 (that is done with _includes/excludes_) 
-but for inserting values at runtime.
+but for _replacing property values_ during the build.
 For instance, if you write `${project.version}` in a resource (like a html file)
 then resource filtering will inject the current version there.
 
@@ -678,7 +680,7 @@ But first, it time permits...
 As mentioned three slides ago, you'd normally let Maven handle resources 
 with the `maven-resources-plugin`.
 To see how that differs from the ANT `copy` task we've used, we'll let you experiment with it.
-Let it do filtering by adding `${project.version}` to the readme.txt
+Let it do some filtering e.g. by adding `${project.version}` somewhere in `readme.txt`
 
 You can find some generic documentation here:
 https://maven.apache.org/plugins/maven-resources-plugin/
@@ -701,7 +703,7 @@ That's exactly what we're going to do, by creating a _parent_ pom file.
 
 In our MavenDemo project we're going to refer to this parent project.
 This parent project holds all the instructions how to build it,
-and the child project only needs to supply the needed properties to work with.
+and the child project only needs to supply the required properties.
 
 
 ## Step 7: Create the ZipParent pom
@@ -710,7 +712,7 @@ and the child project only needs to supply the needed properties to work with.
 * Set the artifactId to `ZipParent`
 * Set the version to `1.0` and remove the now obsolete `revision` property
 * Also remove the `<directory>` line (with the disclaimer)
-* The first `<execution>` block with the `echo`es can be remove as well
+* The first `<execution>` block with the `echo`es can be removed as well
 * Execute on the command line:
 ````ini
 cd parent
@@ -744,7 +746,9 @@ just refer to your `ZipPom` parent,
 and let the `payloadDirectory` property point to the folder containing your files.
 
 
-You have made it, this is the end.
+This is the end of the workshop.
+
+I hope you can use some things you learnt today in practice.
 <br/><br/>
 > # Thank you.
 
