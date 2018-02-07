@@ -11,7 +11,7 @@
     
     <properties>
         <revision>6</revision>
-        <resourceDirectory>${project.basedir}/Main/Resources</resourceDirectory>
+        <payloadDirectory>${project.basedir}/src/payload</payloadDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -36,7 +36,7 @@
                                 <echo>project.build.sourceDirectory = ${project.build.sourceDirectory}</echo>
                                 <echo>project.build.directory =       ${project.build.directory}</echo>
                                 <echo>project.build.outputDirectory = ${project.build.outputDirectory}</echo>
-                                <echo>resourceDirectory =             ${resourceDirectory}</echo>
+                                <echo>resourceDirectory =             ${payloadDirectory}</echo>
                             </target>
                         </configuration>
                     </execution>
@@ -49,7 +49,7 @@
                         <configuration>
                             <target name="ant-step01">
                                 <copy todir="${project.build.outputDirectory}" verbose="true">
-                                    <fileset dir="${resourceDirectory}" />
+                                    <fileset dir="${payloadDirectory}" />
                                 </copy>
                             </target>
                         </configuration>
