@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <resourceDirectory>${project.basedir}</resourceDirectory>
+        <payloadDirectory>${project.basedir}</payloadDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -31,7 +31,7 @@
                         <configuration>
                             <target name="ant-step01">
                                 <copy todir="${project.build.outputDirectory}" verbose="true">
-                                    <fileset dir="${resourceDirectory}" />
+                                    <fileset dir="${payloadDirectory}" />
                                 </copy>
                             </target>
                         </configuration>

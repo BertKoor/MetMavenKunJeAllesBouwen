@@ -8,16 +8,15 @@
     <artifactId>MavenDemo</artifactId>
     <version>0.${revision}</version>
     <packaging>pom</packaging>
-    
-    <properties>
-        <revision>7</revision>
-        <resourceDirectory>${project.basedir}/Main/Resources</resourceDirectory>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <parent>
         <groupId>nl.ordina.jtech</groupId>
         <artifactId>ZipParent</artifactId>
         <version>1.0</version>
     </parent>
+
+    <properties>
+        <revision>7</revision>
+        <payloadDirectory>${project.basedir}/src/payload</payloadDirectory>
+    </properties>
 </project>
