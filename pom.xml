@@ -60,8 +60,8 @@
                         <configuration>
                             <target name="ant-step02">
                                 <zip basedir="${project.build.outputDirectory}"
-                                     destfile="${project.build.directory}/${project.artifactId}.zip" />
-                                <attachartifact file="${project.build.directory}/${project.artifactId}.zip" />
+                                     destfile="${project.build.directory}/payload.zip" />
+                                <attachartifact file="${project.build.directory}/payload.zip" />
                             </target>
                         </configuration>
                     </execution>
