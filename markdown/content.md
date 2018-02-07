@@ -247,7 +247,7 @@ You should see something like this:
 ````ini
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
-[INFO] Building MavenDemo 0.0
+[INFO] Building MavenDemo 0.1
 [INFO] ------------------------------------------------------------------------
 [INFO] 
 [INFO] --- maven-antrun-plugin:1.6:run (default) @ MavenDemo ---
@@ -595,7 +595,7 @@ You can attach multiple files only if they have different classifiers.
 
 
 ## Step 6: Using a different resource folder
-So far we have zipped a `.java` file from the `main/src/java` folder.
+So far we have zipped a `.java` file from the `src/main/java` folder.
 The workspace also contains a `src/payload` folder with very different content,
 and this is what we want to publish as an artifact.
 
