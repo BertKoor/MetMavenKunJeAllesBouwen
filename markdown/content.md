@@ -1,10 +1,12 @@
+### Workshop
 # Met Maven kun je Alles Bouwen
 [Utrecht Java Meetup.com](https://www.meetup.com/meetup-group-pUGgAXiQ) - 7 feb 2017
-### Workshop
-by Bert Koorengevel
-<br/><br/>
+
 ![ordinalogo](img/ordina.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![jtechlogo](img/jtech.jpg)
+
+(c) 2018, Bert Koorengevel
 
 
 ## Introduction
@@ -34,11 +36,13 @@ git clone https://github.com/Ordina-JTech/MetMavenKunJeAllesBouwen.git
 
 
 ## Step 0. Getting Ready - Locating the pom.xml
-* View the cloned git repository with Windows Explorer (ofcourse Mac users should use the Finder.app)
+* View the cloned git repository with Windows Explorer.<br/>
+  Ofcourse Mac users should use the Finder.app
 
-You should see the folders `Main` and `src` but not yet the `target` folder. 
+You should see a `src` folder, but not yet the `target` folder. 
 Also there should be the `pom.xml` which defines this as the root of a Maven project,
-and a `README.md` file which contains the GitHub project documentation page.
+and a `README.md` file which contains the GitHub project documentation page
+plus the `LICENSE.md` text.
 
 Further on in this workshop we'll refer to this as the ** workspace** folder.<br/>
 You'll need this file browser later again, so please leave it open.
@@ -290,7 +294,7 @@ so you can review the evolution of the contents in this folder during this works
 The xml element `project/build/directory` is the same as the Maven property `${project.build.directory}`.
 According to the POM reference you saw earlier, it defaults to `${project.basedir}/target`
 but we've now appended the revision to that.<br/><br/>
-If you execute `mvn validate` again, you should see that reflected.
+If you execute &nbsp; `mvn validate` &nbsp; again, you should see that reflected.
 The properties derived from `project/build/directory` have changed as well.
 
 
@@ -344,7 +348,7 @@ Since none was supplied, it took **"default"** for both execution blocks.</small
 
 
 ## Step 2: Try it out
-If you now execute `mvn clean install`, it will show the following 
+If you now execute &nbsp; `mvn clean install`, it will show the following 
 inbetween running the unit test and building the .jar:
 
 ````ini
@@ -437,7 +441,8 @@ Later on we'll bind some of our own tasks to some of the standard phases.
 <small>
 The `target` folder of the previous run is still there, so you can compare the contents.
 This `target` folder still contains a `classes` subfolder,
-but that only contains `HelloMaven.java`.<br/><br/>
+but it only contains `HelloMaven.java` and a temp `antrun` folder.
+<br/><br/>
 The file `HelloMaven.class` was produced by the `compiler:compile` goal,
 and `readme.txt` was put there by the `resources:resources` goal.
 Both these goals are part of the goal bindings for `jar` packaging and the likes,
@@ -484,12 +489,12 @@ and we'll implement an extra execution step that will create a zip file.</small>
 
 ````xml
 <zip basedir="${project.build.outputDirectory}"
-     destfile="${project.build.directory}/${project.artifactId}.zip" />
+     destfile="${project.build.directory}/payload.zip" />
 ````
 
 We're telling ANT to zip the whole content of the `outputDirectory`.<br/>
 The destination is the `project.build.directory` folder, which is `target4`.
-The zip file name is identical to our `project.artifactId`.
+The zip file name is `payload.zip`.
 
 
 ## Step 4: Try it out
@@ -509,7 +514,7 @@ ant-step01:
 [INFO] Executing tasks
 
 ant-step02:
-      [zip] Building zip: ~/ordina-jtech/MetMavenKunJeAllesBouwen/target4/MavenDemo.zip
+      [zip] Building zip: ~/ordina-jtech/MetMavenKunJeAllesBouwen/target4/payload.zip
 [INFO] Executed tasks
 ````
 
@@ -547,13 +552,13 @@ during the `install` and `deploy` phases.
 
 ````ini
 ant-step02:
-      [zip] Building zip: ~/ordina-jtech/MetMavenKunJeAllesBouwen/target5/MavenDemo.zip
+      [zip] Building zip: ~/ordina-jtech/MetMavenKunJeAllesBouwen/target5/payload.zip
 [INFO] Executed tasks
 [INFO]
 [INFO] --- maven-install-plugin:2.4:install (default-install) @ MavenDemo ---
 [INFO] Installing ~/ordina-jtech/MetMavenKunJeAllesBouwen/pom.xml 
        to .m2/repository/nl/ordina/jtech/MavenDemo/0.5/MavenDemo-0.5.pom
-[INFO] Installing /~/ordina-jtech/MetMavenKunJeAllesBouwen/target5/MavenDemo.zip
+[INFO] Installing /~/ordina-jtech/MetMavenKunJeAllesBouwen/target5/payload.zip
        to .m2/repository/nl/ordina/jtech/MavenDemo/0.5/MavenDemo-0.5.zip
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
@@ -566,24 +571,23 @@ It's only visible in the extra `Installing` log line.
 
 
 ## Step 5: Check the results
-* Check your **local Maven repository** and verify the .zip file is there.
+* Check your **local Maven repository** and verify there is a .zip file.
 
-In your local repository the .zip file got a slightly different name: 
-the version number is part of the file name.
-This is part of the Maven conventions.
-
-Even if the file we produced had another name than the `artifactid`,
-it would be renamed to `${project.artifactId}-${project.version}`<br/>
-by Maven because that's the convention.
+Note that Maven decided to rename our zip file to the artifactId plus the version.
+This is the Maven convention of naming artifacts. 
+This cannot be changed, otherwise consumers of the artifact 
+would be unable to locate it in the repository.
 
 There is one thing you can do, and that is to supply a **classifier** with the attachment.
 For instance:
 
 ````xml
-<attachartifact file="${project.build.directory}/${project.artifactId}.zip" classifier="foo"/>
+<attachartifact file="${project.build.directory}/payload.zip" classifier="foo"/>
 ```` 
 
 will publish a file named `MavenDemo-0.5-foo.zip` to the repository.
+
+You can attach multiple files only if they have different classifiers.
 
 
 # Step 6
@@ -591,7 +595,7 @@ will publish a file named `MavenDemo-0.5-foo.zip` to the repository.
 
 ## Step 6: Using a different resource folder
 So far we have zipped a `.java` file from the `main/src/java` folder.
-The workspace also contains a `Main/Resources` folder with very different content,
+The workspace also contains a `main/payload` folder with very different content,
 and this is what we want to publish as an artifact.
 
 **Source** files need to be compiled, while **resources** can be copied _as-is_.
@@ -628,13 +632,14 @@ https://maven.apache.org/guides/getting-started/index.html#How_do_I_filter_resou
 So we were about to declare a property for the location of our resources:
 
 * Increase the `<revision>` on line 13.
-* Add the following line just below that:
+* Add just below that a new property `<payloadDirectory>`
+  and give it the location of the `main/payload` folder.
 ````xml
-<resourceDirectory>${project.basedir}/Main/Resources</resourceDirectory>
+<payloadDirectory>${project.basedir}/main/payload</payloadDirectory>
 ````
 * Add a line in the first Ant execution step to `<echo>` it's value
 * Replace the source directory in the `<copy>` task with our new property
-* Add any file or folder of your own in workspace folder `Main/Resources`
+* You may edit or add any file or folder of your own in `main/payload`
 
 
 ## Step 6: Get rid of the "classes" folder
@@ -648,7 +653,7 @@ Let's replace `classes` with something more generic, such as `bin`.
 <small>Hint: the xml element `project/build` starts in your pom.xml on line 19.</small>
 
 * Execute &nbsp; `mvn clean install` &nbsp; once again
-* Compare the produced .zip file with the contents of the `Main/Resources` folder of your workspace
+* Compare the produced .zip file with the contents of the `main/payload` folder of your workspace
 
 
 ## Mission accomplished, so
@@ -657,28 +662,28 @@ Let's replace `classes` with something more generic, such as `bin`.
 You have produced a .zip file with your own content as a Maven Artefact.
 
 
-But this was step 6.
+But wait... this was only step 6.
 
 Wasn't there supposed to be 7 steps?
 
 
-That's correct, there are 7 steps!
+That's correct, there _are_ 7 steps!
 
-But first...
+But first, it time permits...
 
 
 ## Step 6 - Bonus: use the maven-resources-plugin
-> **Bonus**: Start only if you have more than 30 min. left.
+> Start only if you have more than 30 minutes left.
 
 As mentioned three slides ago, you'd normally let Maven handle resources 
 with the `maven-resources-plugin`.
 To see how that differs from the ANT `copy` task we've used, we'll let you experiment with it.
+Let it do filtering by adding `${project.version}` to the readme.txt
 
 You can find some generic documentation here:
 https://maven.apache.org/plugins/maven-resources-plugin/
 
-<small>A fully written out example for inspiration can be found<br/>
-in the left menu under the heading **Copy Resources**.</small>
+<small>A fully written out **example** for inspiration can be found _somewhere_ in the left menu.</small>
 
 ### Good luck!
 
@@ -694,7 +699,7 @@ for each project to accomplish that.
 
 That's exactly what we're going to do, by creating a _parent_ pom file.
 
-In our main project we're going to refer to this parent project.
+In our MavenDemo project we're going to refer to this parent project.
 This parent project holds all the instructions how to build it,
 and the child project only needs to supply the needed properties to work with.
 
@@ -736,9 +741,15 @@ mvn clean install
 
 Now whenever you want to pack some random resources as a Maven artifact,
 just refer to your `ZipPom` parent, 
-and let the `resourceDirectory` property point to the folder containing your files.
+and let the `payloadDirectory` property point to the folder containing your files.
 
 
 You have made it, this is the end.
 <br/><br/>
-> # Thank you
+> # Thank you.
+
+![ordinalogo](img/ordina.png)
+&nbsp;&nbsp;&nbsp;&nbsp;
+![jtechlogo](img/jtech.jpg)
+
+(c) 2018, Bert Koorengevel
