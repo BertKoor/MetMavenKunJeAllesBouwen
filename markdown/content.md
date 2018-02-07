@@ -81,7 +81,7 @@ Since that may be a lot of output, we'll pipe it through `grep` or `findstr` to 
 
 * Windows users: run `cmd.exe` and execute this command:
 ````ini
-mvn help:effective-settings | findstr 'local'
+mvn help:effective-settings | findstr "local"
 ````
 * Mac users: open a `terminal.app` session and execute this command:
 ````ini
@@ -93,7 +93,7 @@ You might want to increase the width of the window so you can easily see the qui
 without them getting wrapped onto the next line.
 Windows users: right-click on its title bar and select **Properties** (Eigenschappen). 
 Use the tab **layout** to adjust the screen buffer size.
-Also enable the **smart paste** feature.</small>
+Also enable the **Quick Edit mode** feature (Modus Snel bewerken)</small>
 
 
 ## Step 0. Getting Ready - View your Maven Repository
