@@ -50,7 +50,7 @@ You'll need this file browser later again, so please leave it open.
 
 ## Step 0. Getting Ready - Editing the pom.xml
 * Open the `pom.xml` file with a good text editor such as 
-  Notepad++, UltraEdit, SublimeText, VS Code, Atom, TextMate.
+  Notepad++, UltraEdit, SublimeText, VS Code, Atom, TextMate, or your fav IDE.
 
 The first few lines should look like this:
 
