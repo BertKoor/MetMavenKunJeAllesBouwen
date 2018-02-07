@@ -596,7 +596,7 @@ You can attach multiple files only if they have different classifiers.
 
 ## Step 6: Using a different resource folder
 So far we have zipped a `.java` file from the `main/src/java` folder.
-The workspace also contains a `main/payload` folder with very different content,
+The workspace also contains a `src/payload` folder with very different content,
 and this is what we want to publish as an artifact.
 
 **Source** files need to be compiled, while **resources** can be copied _as-is_.
@@ -635,13 +635,13 @@ So we were about to declare a property for the location of our resources:
 
 * Increase the `<revision>` on line 13.
 * Add just below that a new property `<payloadDirectory>`
-  and give it the location of the `main/payload` folder.
+  and give it the location of the `src/payload` folder.
 ````xml
-<payloadDirectory>${project.basedir}/main/payload</payloadDirectory>
+<payloadDirectory>${project.basedir}/src/payload</payloadDirectory>
 ````
 * Add a line in the first Ant execution step to `<echo>` it's value
 * Replace the source directory in the `<copy>` task with our new property
-* You may edit or add any file or folder of your own in `main/payload`
+* You may edit or add any file or folder of your own in `src/payload`
 
 
 ## Step 6: Get rid of the "classes" folder
@@ -655,7 +655,7 @@ Let's replace `classes` with something more generic, such as `bin`.
 <small>Hint: the xml element `project/build` starts in your pom.xml on line 19.</small>
 
 * Execute &nbsp; `mvn clean install` &nbsp; once again
-* Compare the produced .zip file with the contents of the `main/payload` folder of your workspace
+* Compare the produced .zip file with the contents of the `src/payload` folder of your workspace
 
 
 ## Mission accomplished, so
